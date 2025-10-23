@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartVision | Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Logout Button -->
+<a href="{{ url_for('logout') }}" class="logout-btn">🚪 Logout</a>
+
+<!-- Home Button -->
+<a href="{{ url_for('index') }}" class="home-btn">🏠 Home</a>
+ <!--end-->
+ 
+
+ 
+  <div class="container">
+    <h1> SmartVision Detection System</h1>
+
+    <p class="intro">
+      Welcome to <strong>SmartVision</strong> an intelligent detection system designed to enhance
+      computer vision capabilities for real-world applications. This system integrates 
+      <b>Object Detection</b>, <b>Lane Detection</b>, and <b>Curve Detection</b> into one platform.
+    </p>
+
+    <p class="info">
+      It can analyze live video streams from a camera or process uploaded videos to:
+      <ul style="text-align:left; display:inline-block;">
+        <li>Identify and label objects using <b>YOLOv8 AI model</b>.</li>
+        <li>Detect road lanes and curves using <b>OpenCV image processing</b>.</li>
+        <li>Provide a clear, real-time visual analysis of detected features.</li>
+      </ul>
+    </p>
+
+    <h3>Select a Detection Mode Below</h3>
+
+    <div class="buttons">
+      <a href="{{ url_for('object_detect') }}" class="btn">Object Detection</a>
+      <a href="{{ url_for('lane_detect') }}" class="btn">Lane & Curve Detection</a>
+    </div>
+
+    <footer>
+      <p style="color:#999; margin-top:30px;">
+        Developed by Felix Torsu | Powered by Flask, YOLOv8, and OpenCV
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

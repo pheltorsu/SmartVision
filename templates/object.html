@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartVision | Object Detection</title>
+  <style>
+    /* Background image and page layout */
+    body {
+      background-image: url("{{ url_for('static', filename='images/ghana_road1.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* Central content box */
+    .container {
+      background-color: rgba(0, 0, 0, 0.65); /* translucent dark overlay */
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: center;
+      width: 80%;
+      max-width: 700px;
+    }
+
+   h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #00b4d8, #90e0ef);
+  background-clip: text;               /* ✅ Standard property */
+  -webkit-background-clip: text;       /* ✅ Chrome/Safari support */
+  -webkit-text-fill-color: transparent;
+}
+
+
+    h2 {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #f1f1f1;
+    }
+
+    button {
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 25px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #005f75;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid #666;
+      border-radius: 10px;
+      padding: 8px;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 2px solid #444;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #00b4d8;
+      font-weight: bold;
+    }
+    input[type="file"]::-webkit-file-upload-button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #005f75;
+}
+/* Translucent Home button styling */
+.home-btn {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  background-color: rgba(0, 140, 186, 0.4);  /* translucent blue */
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);  /* soft blur behind the button */
+  z-index: 1000;
+}
+
+.home-btn:hover {
+  background-color: rgba(0, 140, 186, 0.7);  /* less transparent on hover */
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+/* Translucent Logout button */
+.logout-btn {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background-color: rgba(255, 0, 0, 0.4); /* translucent red */
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 0, 0, 0.7);
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Logout Button -->
+<a href="{{ url_for('logout') }}" class="logout-btn">🚪 Logout</a>
+
+  <!-- Home Button -->
+<a href="{{ url_for('index') }}" class="home-btn">🏠 Home</a>
+
+  <div class="container">
+    <h1> Object Detection Dashboard</h1>
+    <p>Use this module to perform real-time or video-based object detection using SmartVision’s AI-powered model.</p>
+
+    <form method="POST" action="{{ url_for('set_source') }}" enctype="multipart/form-data">
+      <button type="submit" name="mode" value="stream">Stream Object Detection</button><br><br>
+      <input type="file" name="video" accept="video/*"><br>
+      <button type="submit" name="mode" value="upload"> Upload Video</button>
+    </form>
+
+    <h2>Live Object Detection Feed</h2>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+
+    <br><a href="{{ url_for('index') }}">⬅ Back to Home</a>
+  </div>
+</body>
+</html>

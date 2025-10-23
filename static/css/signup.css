@@ -1,0 +1,60 @@
+    body {
+  background: url("/static/images/ghana_city.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Poppins", Arial, sans-serif;
+  color: white;
+  margin: 0;
+}
+
+.signup-container {
+  width: 350px;
+  margin: 120px auto;
+  padding: 35px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+.signup-container h1 {
+  margin-bottom: 25px;
+  color: #00BFFF;
+}
+
+.signup-container input {
+  width: 85%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.signup-container button {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  background-color: #00BFFF;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.signup-container button:hover {
+  background-color: #0099cc;
+  transform: scale(1.05);
+}
+
+.signup-container a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+}
